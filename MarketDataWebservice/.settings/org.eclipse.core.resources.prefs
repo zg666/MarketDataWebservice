@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/newlandframework/rpc/boot/MarketDataQtz.java=UTF-8
+encoding//src/main/java/com/newlandframework/rpc/core/AbilityDetailProvider.java=UTF-8
+encoding//src/main/java/com/newlandframework/rpc/core/ReflectionUtils.java=UTF-8
+encoding//src/main/java/com/newlandframework/rpc/db/ConnPool.java=UTF-8
+encoding//src/main/java/com/newlandframework/rpc/db/SingletonDB.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/AddCalcParallelRequestThread.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/AsyncRpcCallTest.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/MultiCalcParallelRequestThread.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/PojoCallTest.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/RpcAbilityDetailProviderTest.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/RpcFilterTest.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/RpcParallelTest.java=UTF-8
+encoding//src/test/java/com/newlandframework/test/RpcServerAccessTest.java=UTF-8
+encoding/README.md=UTF-8

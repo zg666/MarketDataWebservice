@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:p="http://www.springframework.org/schema/p"  
+          xmlns:jaxws="http://cxf.apache.org/jaxws"  
+    xmlns:cxf="http://cxf.apache.org/core"  
+       xmlns:nettyrpc="http://www.newlandframework.com/nettyrpc" 
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.newlandframework.com/nettyrpc http://www.newlandframework.com/nettyrpc/nettyrpc.xsd
+      http://cxf.apache.org/jaxws 
+      http://cxf.apache.org/schemas/jaxws.xsd
+ 
+      ">
+      
+      
+      
+    <import resource="classpath*:META-INF/cxf/cxf.xml" />  
+    <import resource="classpath*:META-INF/cxf/cxf-extension-soap.xml" />  
+    <import resource="classpath*:META-INF/cxf/cxf-servlet.xml" />  
+    
+    <context:property-placeholder location="classpath:rpc-server.properties"/>
+   <nettyrpc:service id="demoAddService" interfaceName="com.newlandframework.rpc.services.AddCalculate"
+                      ref="calcAddService"></nettyrpc:service> 
+    <nettyrpc:service id="demoMultiService" interfaceName="com.newlandframework.rpc.services.MultiCalculate"
+                      ref="calcMultiService"></nettyrpc:service>
+    <nettyrpc:service id="demoPersonManage" interfaceName="com.newlandframework.rpc.services.PersonManage"
+                      ref="personManageService"></nettyrpc:service>
+                      
+                <!-- 行情数据 -->    
+    <nettyrpc:service id="demoMarketData" interfaceName="com.newlandframework.rpc.services.MarketDataService"
+                      ref="marketDataService"></nettyrpc:service>
+                      
+                      
+    <nettyrpc:service id="demoCostTime" interfaceName="com.newlandframework.rpc.services.CostTimeCalculate"
+                      ref="costTimeCalculateService"></nettyrpc:service>
+
+    <nettyrpc:service id="demoCache" interfaceName="com.newlandframework.rpc.services.Cache"
+                      ref="cacheService" filter="simpleFilter"></nettyrpc:service>
+
+    <nettyrpc:service id="demoStore" interfaceName="com.newlandframework.rpc.services.Store"
+                      ref="storeService" filter="simpleFilter"></nettyrpc:service>
+
+    <nettyrpc:registry id="rpcRegistry" ipAddr="${rpc.server.addr}" echoApiPort="${rpc.server.echo.api.port}"
+                       protocol="PROTOSTUFFSERIALIZE"></nettyrpc:registry>
+
+    <bean id="calcAddService" class="com.newlandframework.rpc.services.impl.AddCalculateImpl"></bean>
+    <bean id="calcMultiService" class="com.newlandframework.rpc.services.impl.MultiCalculateImpl"></bean>
+    <bean id="personManageService" class="com.newlandframework.rpc.services.impl.PersonManageImpl"></bean>
+    
+    <!-- 行情数据 -->
+        <bean id="marketDataService" class="com.newlandframework.rpc.services.impl.MarketDataServiceImpl">
+
+     </bean>   
+     <jaxws:endpoint id="marketData" implementor="#marketDataService" address="/getMarketData" /> 
+  <!--     <bean class="com.newlandframework.rpc.boot.RpcServerStarter" init-method="start"></bean>  -->
+        
+    <bean id="costTimeCalculateService" class="com.newlandframework.rpc.services.impl.CostTimeCalculateImpl"></bean>
+    <bean id="cacheService" class="com.newlandframework.rpc.services.impl.CacheImpl"></bean>
+    <bean id="storeService" class="com.newlandframework.rpc.services.impl.StoreImpl"></bean>
+
+     <bean id="simpleFilter" class="com.newlandframework.rpc.filter.support.SimpleFilter"></bean> 
+</beans>
